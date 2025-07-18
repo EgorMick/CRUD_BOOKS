@@ -1,0 +1,17 @@
+<?php
+
+namespace App\Http\Controllers\Post;
+
+use App\Http\Controllers\Controller;
+use App\Models\Book;
+
+class DestroyController extends BaseController
+{
+    public function __invoke(Book $book)
+    {
+        $book->delete();
+        return redirect()->route('books.index');
+
+        //$book->restore();
+    }
+}
