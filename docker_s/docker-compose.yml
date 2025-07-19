@@ -14,7 +14,8 @@ services:
   php-fpm:
     build: sourcefiles/php-fpm
     container_name: ${PROJECT_NAME}-php-fpm
-
+    env_file:
+        - .env
     working_dir: /application
     environment:
       - PHP_WORKER_INSTALL_BCMATH=true
@@ -39,16 +40,6 @@ services:
       - 'mysql-data:/var/lib/mysql'
     ports:
       - '${DB_PORT}:3306'
-    networks:
-      - internal
-
-  phpmyadmin:
-    image: phpmyadmin/phpmyadmin
-    ports:
-      - 9090:80
-    environment:
-      - PMA_HOST=mysql
-      - PMA_PORT=3306
     networks:
       - internal
 

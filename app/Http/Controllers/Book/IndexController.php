@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Post;
+namespace App\Http\Controllers\Book;
 
 use App\Http\Filters\BookFilter;
 use App\Http\Requests\Book\FilterRequest;

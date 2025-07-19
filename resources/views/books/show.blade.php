@@ -7,11 +7,20 @@
         <div>
             Авторы:
             @if($book->authors->isNotEmpty())
-                @foreach($book->authors as $author)
-                    {{ $author->name }}@if(!$loop->last), @endif
-                @endforeach
+                <ul>
+                    @foreach($book->authors as $author)
+                        <li>
+                            <a href="{{ route('authors.show', $author->id) }}">
+                                {{ $author->name }}
+                            </a>
+                            @if(!empty($author->bio))
+                                — {{ Str::limit($author->bio, 50) }}
+                            @endif
+                        </li>
+                    @endforeach
+                </ul>
             @else
-                Неизвестные авторы
+                <div>Неизвестные авторы</div>
             @endif
         </div>
     </div>
