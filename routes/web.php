@@ -18,8 +18,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
-Route::group([], function () {
-    Route::get('/books', [IndexController::class, '__invoke'])->name('books.index')->middleware(['auth']);
+Route::middleware(['auth'])->group(function () {
+    Route::get('/books', [IndexController::class, '__invoke'])->name('books.index');
     Route::get('/authors', [AuthorIndexController::class, '__invoke'])->name('authors.index');
     Route::get('/authors/{author}', [ShowControllerAuthor::class, '__invoke'])->name('authors.show');
 
@@ -30,6 +30,7 @@ Route::group([], function () {
     Route::patch('/books/{book}', [UpdateController::class, '__invoke'])->name('books.update');
     Route::delete('/books/{book}', [DestroyController::class, '__invoke'])->name('books.delete');
 });
+
 
 Auth::routes();
 
